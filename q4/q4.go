@@ -9,7 +9,39 @@ package q4
 //estiver em ordem decrescente e 3 se a lista estiver aleatória. A função deve retornar um erro se a lista estiver vazia.
 //Caso a lista possua apenas um elemento, a função deve retornar 3.
 
+
 func ClassifyPrices(prices []int) (int, error) {
-	// Seu código aqui
+	n := len(prices)
+	if n == 0 {
+		return 0, fmt.Errorf("true")
+	} else if n == 1 {
+		return 3, nil
+	}
+	primeiro := 0
+	if prices[0] < prices[1] {
+		primeiro = 1
+	} else if prices[0] > prices[1] {
+		primeiro = 2
+	}
+	for i := 2; i < n; i++ {
+		if prices[i-1] > prices[i] {
+			if primeiro == 1 {
+				return 3, nil
+			}
+			return 2, nil
+		}
+		if prices[i-1] < prices[i] {
+			if primeiro == 2 {
+				return 3, nil
+			}
+			return 1, nil
+		}
+	}
+	if primeiro == 1 {
+		return 1, nil
+	} else {
+		return 2, nil
+	}
 	return 0, nil
 }
+

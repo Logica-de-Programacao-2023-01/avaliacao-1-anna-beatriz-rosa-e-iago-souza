@@ -12,7 +12,19 @@ package q2
 //
 //Ajude os amigos a encontrar o número de problemas para os quais eles escreverão uma solução.
 
-func ProblemsSolved(answers [][3]bool) int {
-	// Seu código aqui
-	return 0
+func ProblemsSolved(answers [4][3]bool) int {
+	var ltrue int
+	totaltrue := 0
+	for l := range answers {
+		ltrue = 0
+		for c := range answers[l] {
+			if answers[l][c] {
+				ltrue++
+			}
+		}
+		if ltrue >= 2 {
+			totaltrue++
+		}
+	}
+	return totaltrue
 }
